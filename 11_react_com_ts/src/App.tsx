@@ -1,7 +1,13 @@
 import React from 'react';
 
+
 // 4 - Impotação de componentes
 import FirstComponent from './components/FirstComponent';
+
+// 5 - Desestruturando props
+import SecondComponent from './components/SecondComponent';
+import Destructuring from './components/Destructuring';
+
 
 function App() {
 
@@ -27,8 +33,22 @@ function App() {
       )}
        <h3>{userGreeting(name)}</h3>
        <FirstComponent/>
-    </div>
+       <SecondComponent name="Segundo"/>
+      <Destructuring 
+      title='Primeiro post'
+      content="Algum contéudo"
+      commentsQty={10}
+      tags={['Ts, Js']}
+      />
+      <Destructuring 
+      title='Segundo post'
+      content="Mais outro contéudo"
+      commentsQty={5}
+      tags={['phython']}
+      />
+     </div>
   );
 }
 
 export default App;
+ 
