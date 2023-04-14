@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {createContext} from 'react';
 
 
 // 4 - Impotação de componentes
@@ -11,11 +11,20 @@ import Destructuring, { Category } from './components/Destructuring';
 // 6 - UseState
 import State from './components/State';
 
+
 // 8 - Type
 type textOrNull = string |  null
 
 type fixed = "Isso" | "Ou" | "Aquilo";
  
+// 9 - Context
+interface IAppContext {
+  language: string;
+  framework: string;
+  projects: number;
+}
+
+export const AppContext = createContext<IAppContext | null>(null)
 
 function App() {
 
@@ -31,13 +40,21 @@ function App() {
 
  // 8 - Type
  const mytext:textOrNull = "Tem algum texto aqui";
- let mySecondText:textOrNull = null;
+ let mySecondText:textOrNull = null; 
 
  //mySecondText = "opa";
 
  const testandofixed:fixed = "Isso";
 
+// 9 - Context
+ const contextValue: IAppContext = {
+  language: "JavaScript",
+  framework: "Express",
+  projects: 5,
+ };
+
   return (
+    <AppContext.Provider value={contextValue}>
     <div className="App">
      <h1>TypeScript com React</h1>
      <h2>Nome: {name}</h2>
@@ -69,6 +86,7 @@ function App() {
       {mySecondText && <p>Tem texto na variável</p>}
     
      </div>
+     </AppContext.Provider>
   );
 }
 
