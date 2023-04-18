@@ -12,6 +12,7 @@ import styles from "./App.module.css";
 
 
 
+
 function App() {
   return (
   <div>
@@ -19,7 +20,7 @@ function App() {
   <main className={styles.main}>
    <div>
       <h2>O que você vai fazer?</h2>
-      <TaskForm btnText='Craiar Tarefa'/>
+      <TaskForm btnText='Criar Tarefa'/>
    </div>
    <div>
     <h2>Suas tarefas:</h2>
