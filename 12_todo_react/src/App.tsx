@@ -5,14 +5,14 @@ import Header from './components/Header';
 import Footer from './components/Footer';
 import TaskForm from './components/TaskForm';
 import TaskList from './components/TaskList';
+import Modal from './components/Modal';
 
 // css
-
 import styles from "./App.module.css";
 
 // interface
 import { ITask } from './interfaces/Task';
-import { title } from 'process';
+
 
 function App() {
 
@@ -29,6 +29,7 @@ function App() {
 
   return (
   <div>
+    <Modal/>
     <Header/>
   <main className={styles.main}>
    <div>
