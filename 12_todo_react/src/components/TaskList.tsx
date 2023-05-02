@@ -9,9 +9,10 @@ import style from './TaiskList.module.css';
 interface Props{
   taskList: ITask[];
   handleDelete(id: number): void;
+  handleEdit(): void;
 }
 // condiçao ? true : false
-const TaskList = ({taskList, handleDelete } : Props) => {
+const TaskList = ({taskList, handleDelete, handleEdit } : Props) => {
   return (
     <>
       {taskList.length > 0 ? (
@@ -22,7 +23,7 @@ const TaskList = ({taskList, handleDelete } : Props) => {
               <p>Dificuldade: {task.difficulty}</p>
             </div>
             <div className={style.actions}>
-              <i className="bi bi-pencil"></i>
+              <i className="bi bi-pencil" onClick={() => handleEdit()}></i>
               <i className="bi bi-trash" onClick={() => {handleDelete(task.id)}}></i>
             </div>
           </div>
