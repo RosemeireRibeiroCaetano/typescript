@@ -12,9 +12,10 @@ interface Props {
   taskList: ITask[];
   setTaskList?: React.Dispatch<React.SetStateAction<ITask[]>>;
   task?: ITask | null;
+  handleUpdate?(id: number, title: string, difficulty: number): void;
 }
 
-function TaskForm ({ btnText, taskList, setTaskList, task }:Props) {
+function TaskForm ({ btnText, taskList, setTaskList, task, handleUpdate }:Props) {
 
   const [id, setId] = useState<number>(0);
   const [title, setTitle] = useState<string>("");
@@ -31,6 +32,10 @@ function TaskForm ({ btnText, taskList, setTaskList, task }:Props) {
   const addTaskHandler = (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault();
 
+    if(handleUpdate) {
+      handleUpdate(id, title, difficulty);
+    } else {
+
     const id = Math.floor(Math.random() * 1000);
 
     const newITask: ITask = {id, title, difficulty};
@@ -41,8 +46,9 @@ function TaskForm ({ btnText, taskList, setTaskList, task }:Props) {
     setDifficulty(0);
 
     console.log(taskList);
+    }
     
-  }
+  };
 
   const handleChange = (e: ChangeEvent<HTMLInputElement>) => {
     if(e.target.name === "title") {
@@ -71,12 +77,12 @@ function TaskForm ({ btnText, taskList, setTaskList, task }:Props) {
     </div>
     <div className={styles.input_container}>
       <label htmlFor="difficulty">Dificuldade:</label>
-      <input 
-      type="text" 
-      name="difficulty" 
-      placeholder="Dificuldade da tarefa"  
-      onChange={handleChange}
-      value={difficulty}
+      <input
+        type="number" 
+        name="difficulty" 
+        placeholder="Dificuldade da tarefa"  
+        onChange={handleChange}
+        value={difficulty}
      
      />
     </div>
