@@ -3,7 +3,7 @@
 // console.log("Express + Ts!!!")
 
 // 2- Init express
-import express from "express";
+import express, {Request, Response} from "express";
 
 const app = express();
 
@@ -36,6 +36,12 @@ app.all("/api/product/check", (req, res) => {
     }
 
 });
+
+// 5 - Interfaces do express
+app.get("/api/interfaces", (req: Request, res: Response) => {
+  return res.send("Utilizando as interfaces");
+});
+
 
 app.listen(3000, () => {
   console.log("Aplicação de Ts + Express funcionando!");
