@@ -42,6 +42,24 @@ app.get("/api/interfaces", (req: Request, res: Response) => {
   return res.send("Utilizando as interfaces");
 });
 
+// 6 - Enviando json
+app.get("/api/json", (req: Request, res: Response) => {
+
+    return res.json({
+      name: "Shirt",
+      price: 30.00,
+      color: "Blue",
+      size: ["P", "M", "G"],
+    });
+});
+
+// 7 -router parameters
+app.get("/api/product/:id", (req: Request, res: Response) => {
+
+  console.log(req.params);
+
+  return res.send("Produto não encontrado!");
+});
 
 app.listen(3000, () => {
   console.log("Aplicação de Ts + Express funcionando!");
