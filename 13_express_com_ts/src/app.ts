@@ -10,6 +10,14 @@ const app = express();
 // Rota com Post
 app.use(express.json());
 
+// 11 - Middleware para todas as rotas
+function showPath(req: Request, res: Response, next: NextFunction) {
+  console.log(req.path);
+  next();
+}
+
+app.use(showPath);
+
 app.get("/", (req, res) => {
   return res.send("Hello Express!")
 });
@@ -108,14 +116,17 @@ app.get("/api/user/:id/access", checkUser, (req: Request, res: Response) => {
     return res.json({ msg: "Bem-vindo a área administrativa!"})
 });
 
-// 11 - Middleware para todas as rotas
-function showPath(req: Request, res: Response, next: NextFunction) {
-  console.log(req.path);
-  next();
+
+// 12 - req e res com generics
+app.get("/api/user/:id/details/:name", 
+(req: Request<{id: string; name: string}>, res: Response<{status: boolean}>) => {
+
+  console.log(`ID: ${req.params.id}`)
+  console.log(`Name: ${req.params.name}`)
+
+  return res.json({status: true});
 }
-
-app.use(showPath);
-
+);
 
 app.listen(3000, () => {
   console.log("Aplicação de Ts + Express funcionando!");
